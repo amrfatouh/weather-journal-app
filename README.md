@@ -26,6 +26,6 @@ Weather API where you can update the API whith your data and receive feedback fr
 ## List of files
 
 - The main HTML file [index.html](./website/index.html)
-- The main CSS file [styles.css](./website/css/style.css)
-- The front end Javascript file [app.js](./website/js/app.js)
+- The main CSS file [styles.css](./website/style.css)
+- The front end Javascript file [app.js](./website/app.js)
 - The back end Javascript file [server.js](./server.js)
