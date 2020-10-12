@@ -1,10 +1,31 @@
-# Weather-Journal App Project
+# Weather Journal App
 
-## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+## Table of contents
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+- [General Description](#general-description)
+- [Main Features](#main-features)
+- [Technologies used](#technologies-used)
+- [List of files](#list-of-files)
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+## General Description
+
+Weather API where you can update the API whith your data and receive feedback from the server
+
+## Main Features
+
+- Fetches data from OpenWeatherMap Api with the ZIP code of a city
+- Users can add their own comment on the weather fetched
+- The fetched data and the user input are all shown on the screen
+
+## Technologies used
+
+- HTML / CSS
+- Javascript
+- Node.js / Express
+
+## List of files
+
+- The main HTML file [index.html](./website/index.html)
+- The main CSS file [styles.css](./website/css/style.css)
+- The front end Javascript file [app.js](./website/js/app.js)
+- The back end Javascript file [server.js](./server.js)
