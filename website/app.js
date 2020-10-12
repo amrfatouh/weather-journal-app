@@ -39,16 +39,30 @@ const postWeather = async (url = "", data = {}) => {
   }
 };
 
+const updateUI = async () => {
+  const request = await fetch("/all");
+  try {
+    const weather = await request.json();
+    document.getElementById("date").innerHTML = weather.date;
+    document.getElementById("temp").innerHTML = weather.temperature;
+    document.getElementById("content").innerHTML = weather.userResponse;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
 document.querySelector("#generate").addEventListener("click", () => {
   let zip = document.querySelector("#zip").value;
   let userResponse = document.querySelector("#feelings").value;
-  getWeather(baseUrl, zip, apiKey).then((data) => {
-    console.log(data);
-    let weatherObj = {
-      temperature: data.main.temp,
-      date: newDate,
-      userResponse,
-    };
-    postWeather("/add", weatherObj);
-  });
+  getWeather(baseUrl, zip, apiKey)
+    .then((data) => {
+      console.log(data);
+      let weatherObj = {
+        temperature: data.main.temp,
+        date: newDate,
+        userResponse,
+      };
+      postWeather("/add", weatherObj);
+    })
+    .then(updateUI());
 });
