@@ -6,7 +6,7 @@
 let d = new Date();
 let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 
-const apiKey = "&appid=629aa1395ae06058a5ea03ec443cc3cd";
+const apiKey = "&appid=629aa1395ae06058a5ea03ec443cc3cd&units=imperial";
 const baseUrl = "http://api.openweathermap.org/data/2.5/weather?zip=";
 const LAZip = 90011;
 
@@ -46,6 +46,7 @@ const updateUI = async () => {
     document.getElementById("date").innerHTML = weather.date;
     document.getElementById("temp").innerHTML = weather.temperature;
     document.getElementById("content").innerHTML = weather.userResponse;
+    scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   } catch (error) {
     console.log("error", error);
   }
@@ -54,15 +55,18 @@ const updateUI = async () => {
 document.querySelector("#generate").addEventListener("click", () => {
   let zip = document.querySelector("#zip").value;
   let userResponse = document.querySelector("#feelings").value;
-  getWeather(baseUrl, zip, apiKey)
-    .then((data) => {
-      console.log(data);
-      let weatherObj = {
-        temperature: data.main.temp,
-        date: newDate,
-        userResponse,
-      };
-      postWeather("/add", weatherObj);
-    })
-    .then(updateUI());
+  if (String(zip) && userResponse) {
+    getWeather(baseUrl, zip, apiKey)
+      .then((data) => {
+        let weatherObj = {
+          temperature: data.main.temp,
+          date: newDate,
+          userResponse,
+        };
+        postWeather("/add", weatherObj).then(updateUI());
+      })
+      .catch((error) => alert("check your entered data"));
+  } else {
+    alert("fill the input fields");
+  }
 });
